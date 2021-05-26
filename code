@@ -1,0 +1,52 @@
+package Project;
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileReader;
+import java.io.IOException;
+import java.io.PrintStream;
+import java.util.*;
+public class Palindrome
+{
+public static void main(String[] args) throws IOException
+{
+BufferedReader in=new BufferedReader(new FileReader("C:\\Users\\v.suresh
+babu\\eclipse-workspace\\JavaProject\\src\\Project\\input"));
+
+PrintStream out=new PrintStream(new File("C:\\Users\\v.suresh babu\\eclipse-
+workspace\\JavaProject\\src\\Project\\output"));
+
+String input;
+input=in.readLine();
+while(input!=null)
+{
+if (isPalindrome(input))
+out.println(input+" is a Palindrome");
+else
+out.println(input+" is not a Palindrome");
+input=in.readLine();
+}
+}
+public static boolean isPalindrome(String input)
+{
+Queue<Character>q = new LinkedList<Character>();
+Stack<Character>s = new Stack<Character>( );
+Character letter;
+int mismatches = 0;
+int i;
+for (i = 0; i<input.length( ); i++)
+{
+letter = input.charAt(i);
+if (Character.isLetter(letter))
+{
+q.add(letter);
+s.push(letter);
+}
+}
+while (!q.isEmpty( ))
+{
+if (q.remove( ) != s.pop( ))
+mismatches++;
+}
+return (mismatches == 0);
+}
+}
